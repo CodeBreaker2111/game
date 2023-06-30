@@ -23,9 +23,13 @@ class player:
         self.stamina -= 0.2
         if self.stamina == 150:
             self.last_stamina = 150
+        if self.last_stamina > 149.9:
+            self.last_stamina = 150
     
     def recharge_stamina(self):
         self.last_stamina = self.stamina
         self.stamina += 0.1
         if self.stamina == 150:
+            self.last_stamina = 150
+        if self.last_stamina > 149.9:
             self.last_stamina = 150

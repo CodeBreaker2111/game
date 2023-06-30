@@ -26,21 +26,6 @@ fps = 780
 
 background = pygame.image.load("assets/background.png")
 
-json_data = None
-with open("assets/json/world.json", "r") as f:
-    data = f.read()
-    json_data = json.loads(data)
-
-print(json_data)
-
-with open("assets/json/world.josn", "w") as f:
-    if len(json_data["blocks"]) < 5:
-        pass
-    else:
-        for i in range(1, 800):
-            json_data["blocks"].append(-1)
-    
-        json.dump(json_data, f, indent = 1)
 
 for i in range(1, 150):
     stamina_bytesio.append(window.crop(stamina_gradient_png, (0, 0, i, 20)))

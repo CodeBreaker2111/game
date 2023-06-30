@@ -43,6 +43,7 @@ def main():
         # detect closing window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                blocks.save()
                 pygame.quit()
                 sys.exit()
 
@@ -102,6 +103,8 @@ def main():
         if assets.player.last_stamina != assets.player.stamina:
             stamina_gradient_data = window.crop(assets.stamina_gradient_png, (0, 0, assets.player.stamina, 20))
             window.blit(pygame.transform.scale(pygame.image.load(stamina_gradient_data), (assets.player.stamina * 2, 40)), (82, 924))
+        else:
+            window.blit(pygame.transform.scale(pygame.image.load(assets.stamina_gradient_png), (assets.player.stamina * 2, 40)), (82, 924))
         window.blit(pygame.transform.scale(assets.stamina_bar, (340, 140)), (60, 840))
 
         window.update()

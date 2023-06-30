@@ -15,6 +15,8 @@ def read():
 
         return json_data
 
+blocks_list = read()["blocks"]
+
 def draw():
     global blocks_list
 
@@ -28,9 +30,6 @@ def draw():
         if block != -1:
             window.blit(pygame.image.load(assets.blocks[block]), (posX, posY))
         posX += 50
-
-        if block != -1:
-            assets.blocks_rect.append(pygame.Rect(posX, posY, 50, 50))
             
 def build_block():
     mbuttons_pressed = pygame.mouse.get_pressed()
@@ -47,14 +46,7 @@ def build_block():
 
         json_data = None
         try:
-            with open("assets/json/world.json") as f:
-                data = f.read()
-                json_data = json.loads(data)
-
-                json_data["blocks"][list_index] = 0
-            
-            with open("assets/json/world.json", "w") as f:
-                json.dump(json_data, f, indent = 1)
+            blocks_list[list_index] = 0
         except IndexError:
             print("you cant place here")
             pygame.mixer.music.load("assets/sound/cant_place.wav")
@@ -68,14 +60,7 @@ def build_block():
 
         json_data = None
         try:
-            with open("assets/json/world.json") as f:
-                data = f.read()
-                json_data = json.loads(data)
-
-                json_data["blocks"][list_index] = 1
-            
-            with open("assets/json/world.json", "w") as f:
-                json.dump(json_data, f, indent = 1)
+            blocks_list[list_index] = 1
         except IndexError:
             print("you cant place here")
             pygame.mixer.music.load("assets/sound/cant_place.wav")
@@ -89,14 +74,7 @@ def build_block():
 
         json_data = None
         try:
-            with open("assets/json/world.json") as f:
-                data = f.read()
-                json_data = json.loads(data)
-
-                json_data["blocks"][list_index] = -1
-            
-            with open("assets/json/world.json", "w") as f:
-                json.dump(json_data, f, indent = 1)
+            blocks_list[list_index] = -1
         except IndexError:
             print("you cant delete there")
             pygame.mixer.music.load("assets/sound/cant_delete.wav")
@@ -110,9 +88,18 @@ def block_select_icon():
 
     window.blit(assets.block_select, (tilecornerX, tilecornerY))
 
+def save():
+    json_data = None
+    with open("assets/json/world.json", "r") as f:
+        data = f.read()
+        json_data = json.loads(data)
+    with open("assets/json/world.json", "w") as f:
+        json_data["blocks"] = blocks_list
+        json.dump(json_data, f, indent=1)
+
 def main():
     global blocks_list
-    blocks_list = read()["blocks"]
     build_block()
     draw()
     block_select_icon()
+    save()
