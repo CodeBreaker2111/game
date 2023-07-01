@@ -113,6 +113,7 @@ def main():
         window.blit(assets.red_cross, (player_save_posx + 40, player_save_posy + 70))
         enemy_spawn.draw()
         window.blit(assets.player.skin, assets.player.pos)
+        enemy_spawn.move_to(assets.player.pos)
 
         if assets.player.last_stamina != assets.player.stamina:
             stamina_gradient_data = window.crop(assets.stamina_gradient_png, (0, 0, assets.player.stamina, 20))
