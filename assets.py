@@ -40,6 +40,5 @@ for i in range(1, 150):
     stamina_bytesio.append(window.crop(stamina_gradient_png, (0, 0, i, 20)))
 
 stamina_bytesio.append(window.crop(stamina_gradient_png, (0, 0, 150, 20)))
-print(len(stamina_bytesio))
 
 red_cross = pygame.image.load("assets/red_cross.png")

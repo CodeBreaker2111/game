@@ -114,8 +114,6 @@ def main():
         enemy_spawn.draw()
         window.blit(assets.player.skin, assets.player.pos)
 
-        print(assets.player.last_stamina)
-        print(assets.player.stamina)
         if assets.player.last_stamina != assets.player.stamina:
             stamina_gradient_data = window.crop(assets.stamina_gradient_png, (0, 0, assets.player.stamina, 20))
             window.blit(pygame.transform.scale(pygame.image.load(stamina_gradient_data), (assets.player.stamina * 2, 40)), (82, 924))
