@@ -8,7 +8,17 @@ player_skin2 = pygame.transform.scale(pygame.image.load("assets/player/skin2.png
 
 player_speed = 0.35
 
-player = player_file.player(100, 100, 0, 0, player_skin1, (100, 100), 150, player_skin1.get_rect())
+player_save_posx = None
+player_save_posy = None
+
+with open("assets/json/player.json", "r") as f:
+    data = f.read()
+    json_data = json.loads(data)
+
+    player_save_posx = json_data["posx"]
+    player_save_posy = json_data["posy"]
+
+player = player_file.player(player_save_posx, player_save_posy, 0, 0, player_skin1, (None), 150, player_skin1.get_rect())
 player.last_pos = player.pos
 
 stamina_gradient_png = "assets/stamina_gradient.png"
@@ -26,9 +36,10 @@ fps = 780
 
 background = pygame.image.load("assets/background.png")
 
-
 for i in range(1, 150):
     stamina_bytesio.append(window.crop(stamina_gradient_png, (0, 0, i, 20)))
 
 stamina_bytesio.append(window.crop(stamina_gradient_png, (0, 0, 150, 20)))
 print(len(stamina_bytesio))
+
+red_cross = pygame.image.load("assets/red_cross.png")
