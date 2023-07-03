@@ -11,6 +11,8 @@ skinNum = 1
 skin = assets.player_skin1
 sprinting = False
 enemy_spawn.spawn_enemy((100, 100), 1)
+enemy_spawn.spawn_enemy((34, 500), 1)
+enemy_spawn.spawn_enemy((104, 32), 1)
 player_save_posx = assets.player_save_posx
 player_save_posy = assets.player_save_posy
 
@@ -114,6 +116,8 @@ def main():
         enemy_spawn.draw()
         window.blit(assets.player.skin, assets.player.pos)
         enemy_spawn.move_to(assets.player.pos)
+
+        window.draw_rect((255, 25, 0), (50, 50, assets.player.health * 1.5, 50))
 
         if assets.player.last_stamina != assets.player.stamina:
             stamina_gradient_data = window.crop(assets.stamina_gradient_png, (0, 0, assets.player.stamina, 20))

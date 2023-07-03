@@ -1,7 +1,7 @@
 import pygame; pygame.init()
 
 class player:
-    def __init__(self, x, y, velX, velY, texture, size, stamina, rect) -> None:
+    def __init__(self, x, y, velX, velY, texture, size, stamina, rect, health) -> None:
         self.vel = (velX, velY)
         self.pos = (x, y)
 
@@ -14,6 +14,8 @@ class player:
         self.last_stamina = stamina
 
         self.last_move = None
+
+        self.health = health
     
     def move(self, speedX, speedY):
         self.pos = (speedX + self.pos[0], speedY + self.pos[1])
@@ -33,3 +35,10 @@ class player:
             self.last_stamina = 150
         if self.last_stamina > 149.9:
             self.last_stamina = 150
+    
+    def damage(self, damage):
+        self.health -= damage
+        print(self.health)
+    
+    def heal(self, health):
+        self.health += health

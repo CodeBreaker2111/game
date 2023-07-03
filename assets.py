@@ -18,7 +18,7 @@ with open("assets/json/player.json", "r") as f:
     player_save_posx = json_data["posx"]
     player_save_posy = json_data["posy"]
 
-player = player_file.player(player_save_posx, player_save_posy, 0, 0, player_skin1, (None), 150, player_skin1.get_rect())
+player = player_file.player(player_save_posx, player_save_posy, 0, 0, player_skin1, (None), 150, player_skin1.get_rect(), 100)
 player.last_pos = player.pos
 
 stamina_gradient_png = "assets/stamina_gradient.png"

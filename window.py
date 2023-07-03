@@ -28,3 +28,6 @@ def crop(image, crop):
         data.seek(0)
 
         return data
+
+def draw_rect(color, pygame_rect):
+    pygame.draw.rect(win, color, pygame_rect)
